@@ -1,0 +1,45 @@
+{
+  "name": "workflowmanagementsystem",
+  "version": "1.0.0",
+  "description": "A workflow management system helps businesses design, execute, and monitor workflows, automating processes and improving efficiency. A user should be able to create workflow that includes an API component and an email component. When executed the API trigger, and the response should be emailed to the email added.",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest",
+    "watch-test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gayathritalasila/WorkflowManagementSystem.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "Gayathri Talasila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gayathritalasila/WorkflowManagementSystem/issues"
+  },
+  "homepage": "https://github.com/gayathritalasila/WorkflowManagementSystem#readme",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.0.0",
+    "@mui/x-data-grid": "^7.28.1",
+    "@reduxjs/toolkit": "^2.6.1",
+    "date-fns": "^4.1.0",
+    "firebase": "^11.5.0",
+    "parcel": "^2.14.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-flow-renderer": "^10.3.17",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.4.0",
+    "react-toastify": "^11.0.5",
+    "reactflow": "^11.11.4",
+    "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3"
+  }
+}
