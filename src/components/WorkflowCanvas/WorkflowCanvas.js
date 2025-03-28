@@ -10,6 +10,7 @@ import CustomControls from "./CustomControls";
 import ApiCallConfig from "./ApiCallConfig";
 import EmailConfig from "./EmailConfig";
 import TextboxConfig from "./TextboxConfig";
+import { useNavigate } from "react-router";
 
 const nodeStyles = {
     start: {
@@ -173,6 +174,7 @@ const StepNode = ({ id, data, onDeleteNode, onSelectNode }) => (
 );
 
 const WorkflowCanvas = () => {
+    const navigate = useNavigate();
     const initialNodes = [
         { id: "start", type: "startNode", position: { x: 250, y: 50 }, data: { label: "Start" } },
         { id: "plus-1", type: "plusNode", position: { x: 275, y: 140 } },
@@ -196,6 +198,9 @@ const WorkflowCanvas = () => {
     const MAX_HISTORY = 20;
 
     console.log(selectedNode);
+    const handleGoBack =()=>{
+        Navigate("/listView");
+    }
     const handleSelectNode = (nodeId) => {
         const node = nodes.find((n) => n.id === nodeId);
         if (node?.type === "apiCallNode") {
@@ -368,7 +373,7 @@ const WorkflowCanvas = () => {
         <div ref={reactFlowWrapper} style={{ height: "100vh", width: "100vw", background: "#F8F2E7" }}>
             <div style={{ position: "absolute", top: 10, left: 10, zIndex: 10 }}>
                 <Header
-                    onGoBack={() => alert("Going back!")} // Replace with actual navigation logic
+                    onGoBack={handleGoBack} // Replace with actual navigation logic
                     //   title={title}
                     onSave={() => alert("Workflow Saved!")} // Replace with actual save logic
                 />
