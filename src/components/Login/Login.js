@@ -6,7 +6,7 @@ import ApplelogoIcon from "../../../icons/ApplelogoIcon";
 import { handleEmailLogin, handleFacebookLogin, handleGoogleLogin, handleSignup } from "./login.actions";
 import "./login.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,6 +17,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSignup, setIsSignup] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -29,22 +30,23 @@ const Login = () => {
                 console.error("Signup Error:", error);
             }
         } else {
-            handleEmailLogin(email, password, dispatch, navigate);
+            await handleEmailLogin(email, password, dispatch, navigate);
+            if (rememberMe) {
+                localStorage.setItem("rememberedUser", JSON.stringify({ email, password }));
+            } else {
+                localStorage.removeItem("rememberedUser");
+            }
         }
     };
 
     useEffect(()=>{
-        const storedUser = localStorage.getItem("user");
-        if(storedUser && !user){
-            const userData = JSON.parse(storedUser);
-            dispatch(login(userData));
+        const storedUser = JSON.parse(localStorage.getItem("rememberedUser"));
+        if (storedUser) {
+            setEmail(storedUser.email);
+            setPassword(storedUser.password);
+            setRememberMe(true);
         }
-    },[dispatch, user]);
-
-    // if(user){
-    //     //Redirect to listview page if logged in
-    //     return <Navigate to="/listView" />;
-    // };
+    }, []);
 
     return (
         <div className="container">
@@ -83,7 +85,7 @@ const Login = () => {
                     {!isSignup && (
                     <div className="options">
                         <div className="remember-me">
-                            <input type="checkbox" id="remember" />
+                            <input type="checkbox" id="remember" checked={rememberMe} onChange={()=>setRememberMe(!rememberMe)} />
                             <label htmlFor="remember">Remember me</label>
                         </div>
                         <a href="#" className="forgot-password">Forgot Password?</a>

@@ -199,8 +199,9 @@ const WorkflowCanvas = () => {
 
     console.log(selectedNode);
     const handleGoBack =()=>{
-        Navigate("/listView");
+        navigate("/listView");
     }
+    
     const handleSelectNode = (nodeId) => {
         const node = nodes.find((n) => n.id === nodeId);
         if (node?.type === "apiCallNode") {
@@ -373,9 +374,9 @@ const WorkflowCanvas = () => {
         <div ref={reactFlowWrapper} style={{ height: "100vh", width: "100vw", background: "#F8F2E7" }}>
             <div style={{ position: "absolute", top: 10, left: 10, zIndex: 10 }}>
                 <Header
-                    onGoBack={handleGoBack} // Replace with actual navigation logic
+                    onGoBack={handleGoBack}
                     //   title={title}
-                    onSave={() => alert("Workflow Saved!")} // Replace with actual save logic
+                    onSave={() => alert("Workflow Saved!")}
                 />
 
             </div>
