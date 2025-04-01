@@ -201,7 +201,7 @@ const WorkflowCanvas = () => {
     const handleGoBack =()=>{
         navigate("/listView");
     }
-    
+
     const handleSelectNode = (nodeId) => {
         const node = nodes.find((n) => n.id === nodeId);
         if (node?.type === "apiCallNode") {
